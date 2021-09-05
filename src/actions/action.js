@@ -25,7 +25,7 @@ export const addFun = (value) => {
 }
 
 export const deleteFun = (value) => {
-    // console.log(value)
+    console.log(value)
     return{
         type: "DELETE",
         payload: value

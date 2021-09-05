@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { loginFun, logoutFun } from '../actions/action'
+import { logoutFun } from '../actions/action'
 
 
 const Nav = () => {

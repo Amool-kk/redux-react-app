@@ -15,7 +15,9 @@ const Home = () => {
     const update = (e) => {
         let heading = document.querySelectorAll('.heading input')[e.target.value].value
         let body = document.querySelectorAll('.body input')[e.target.value].value
+        console.log(heading,body)
         dispatch(updateFun({heading,body,id:e.target.value}))
+        e.target.classList.add('hide')
     }
 
     const add = (e) => {
@@ -26,12 +28,13 @@ const Home = () => {
 
         document.querySelectorAll('.item input')[0].value = ""
         document.querySelectorAll('.item input')[1].value = ""
-        localStorage.setItem('data', states)
+        // localStorage.setItem('data', states)
     }
 
 
     const Delete = (e) => {
         const elm = document.querySelectorAll('.card')[e.target.name].children[0].children[0].innerHTML
+        // console.log()
         dispatch(deleteFun(elm))
     }
 
@@ -58,7 +61,9 @@ const Home = () => {
                         <div className="heading items">
                             <h1 onClick={(e) => {
                                 e.target.classList.add('hide');
-                                document.querySelectorAll('.heading input')[i].classList.remove('hide'); document.querySelectorAll('.heading input')[i].value = e.target.innerHTML;
+                                document.querySelector('.update').classList.remove('hide');
+                                document.querySelectorAll('.heading input')[i].classList.remove('hide');
+                                 document.querySelectorAll('.heading input')[i].value = document.querySelectorAll('.body p')[i].innerHTML;
                                 document.querySelectorAll('.heading input')[i].focus();
                                 document.querySelectorAll('.body input')[i].value = e.target.innerHTML;
                             }}
@@ -68,16 +73,17 @@ const Home = () => {
                         <div className="body items">
                             <p style={{ padding: '5px' }} onClick={(e) => {
                                 e.target.classList.add('hide');
+                                document.querySelector('.update').classList.remove('hide');
                                 document.querySelectorAll('.body input')[i].classList.remove('hide'); 
                                 document.querySelectorAll('.body input')[i].value = e.target.innerHTML;
-                                document.querySelectorAll('.heading input')[i].value = e.target.innerHTML;
+                                document.querySelectorAll('.heading input')[i].value = document.querySelectorAll('.heading h1')[i].innerHTML;
                                 document.querySelectorAll('.body input')[i].focus();
                                 }}>{item.body}</p>
                             <input className="hide" onBlur={(e)=>{e.target.classList.add('hide'); document.querySelectorAll('.body p')[i].classList.remove('hide')}} stype="text" />
                         </div>
                         <div className="button items">
                             <button onClick={(e) => Delete(e)} name={i}>Delete</button>
-                            <button value={i} onClick={(e) => update(e)} className="update">Update</button>
+                            <button value={i} onClick={(e) => update(e)} className="update hide">Update</button>
                         </div>
                     </div>
                 ))}

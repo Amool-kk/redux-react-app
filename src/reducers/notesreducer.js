@@ -5,9 +5,9 @@ const initialData = {
 
 const addState = (state = initialData, action) => {
     if (action.type === 'ADD') {
-        const {Id, value1, value2 } = action.payload
+        const { Id, value1, value2 } = action.payload
         // console.log(value1, "accept", value2, action.payload)
-        return  {
+        return {
             ...state,
             data: [
                 ...state.data,
@@ -32,13 +32,12 @@ const addState = (state = initialData, action) => {
         const heading = action.payload.heading
         const body = action.payload.body
         const Id = action.payload.id
-        const item = {"heading": heading, "body": body}
+        const item = { "heading": heading, "body": body }
+
         state.data.forEach((element, index) => {
-           console.log(element,index)
-           if(index === parseInt(Id)) {
-            console.log(item,"item")   
-            state.data[index] = item;
-        }
+            if (index === parseInt(Id)) {
+                state.data[index] = item;
+            }
         });
         return {
             ...state,
